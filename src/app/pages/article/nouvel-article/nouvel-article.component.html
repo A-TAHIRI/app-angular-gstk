@@ -27,17 +27,17 @@
           </div>
           <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" name="prixUnitaireHt" placeholder="Prix unitaire HT"
+              <input type="number" class="form-control" name="prixUnitaireHt" placeholder="Prix unitaire HT"
                   [(ngModel)]="article.prixUnitaireHt" >
             </div>
             <div class="col">
-              <input type="text" class="form-control" name="tauxtva" placeholder="Taux TVA"
+              <input type="number" class="form-control" name="tauxtva" placeholder="Taux TVA"
                    [(ngModel)]="article.tauxTva" >
             </div>
           </div>
           <div class="row mb-3">
             <div class="col">
-              <input type="text" class="form-control" name="prixUnitaireTtc" placeholder="Prix unitaire TTC" [(ngModel)]="article.prixUnitaireTtc" >
+              <input type="number" class="form-control" name="prixUnitaireTtc" placeholder="Prix unitaire TTC" [(ngModel)]="article.prixUnitaireTtc" >
             </div>
             <div class="col">
               <select class="form-control" name="cat" [(ngModel)]="categorie.id" >

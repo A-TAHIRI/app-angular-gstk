@@ -9,23 +9,23 @@ import { Article } from 'src/app/models/article';
   providedIn: 'root'
 })
 export class ArticleService {
-  
+
 
 readonly baseUrl = 'http://localhost:8082/api/v1/articles';
 
   constructor(private http: HttpClient
- 
+
     ) { }
 
-  // Méthode pour récupérer un article 
+  // Méthode pour récupérer un article
   getArticle(id: number): Observable<ArticleDto> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.get(url);
   }
 
   // Méthode pour ajouter un article
-  ajouterArticle(article: Article): Observable<ArticleDto> {
-    const url =  this.baseUrl;
+  ajouterArticle(article: Article): Observable<Article> {
+    const url=this.baseUrl;
     return this.http.post(url, article);
   }
 
@@ -45,10 +45,10 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
   getToutesArticles():  Observable<ArticleDto[]> {
     const url =  this.baseUrl;
     console.log(url);
-    
+
     return this.http.get<ArticleDto[]>(url);
   }
 
 
-  
+
 }

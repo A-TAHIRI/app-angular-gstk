@@ -21,8 +21,4 @@ export class FileUploadService {
   }
 
 
-  displayFile( fileName :string ):any  {
-    const url =  this.baseUrl+`/file/image/{annee}/{mois}/{jour}/{fileName}`;
-    this.http.get(url)
-  }
 }

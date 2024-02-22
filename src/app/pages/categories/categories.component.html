@@ -10,24 +10,26 @@
       </div>
     </div>
     <div class="col m-3">
-    
-      <div class="row col-md-12 custom-border mb-3 p-3" >
+      <div class="row col-md-12 alert alert-danger" *ngIf="errorsMsg.length>0">
+        <span *ngFor="let msg of errorsMsg"> {{ msg }}</span>
+      </div>
+      <div class="row col-md-12 custom-border mb-3 p-3"  *ngFor=" let cat of liste" >
         <div class="col-md-3 custom-border-right">
-         
+          {{cat.code}}
         </div>
         <div class="col-md-4 custom-border-right">
-       
+              {{cat.designation}}
         </div>
         <div class="col-md-3">
           <div class="row">
             <div class="col-md-4">
-            
+
             </div>
             <div class="col-md-4">
-             
+
             </div>
             <div class="col-md-4">
-             
+
             </div>
           </div>
         </div>
@@ -39,7 +41,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="modalDeleteCat" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
        aria-hidden="true">
@@ -55,10 +57,9 @@
           Etes vous-sur de vouloir supprimer cette categorie?
         </div>
         <div class="modal-footer">
-        
+
         </div>
       </div>
     </div>
   </div>
-  
-  
+

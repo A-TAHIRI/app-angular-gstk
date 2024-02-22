@@ -5,6 +5,7 @@ import { Categorie } from 'src/app/models/categirie';
 import { ArticleService } from 'src/app/services/article/article.service';
 import { CategorieService } from 'src/app/services/categorie/categorie.service';
 import {FileUploadService} from "../../../services/upload/file-upload.service";
+import {ArticleDto} from "../../../dto/article-dto";
 
 @Component({
   selector: 'app-nouvel-article',
@@ -19,7 +20,7 @@ export class NouvelArticleComponent implements OnInit {
   errorsMsg:Array<string>=[];
   pathFile:any ;
   playImage ='';
-  url: any;
+
   loading:boolean=false;
   protected readonly event = event;
   constructor(
@@ -42,7 +43,6 @@ export class NouvelArticleComponent implements OnInit {
   }
 
   save(){
-
     this.article.categorie=this.categorie;
     this.articleService.ajouterArticle(this.article).subscribe(() => {
       this.router.navigate(['articles']);
@@ -57,9 +57,12 @@ export class NouvelArticleComponent implements OnInit {
    const file: File = event.target.files[0];
    this.fileUploadService.uploadFile(file).subscribe(
      (res : any) => {
-       this.pathFile=res;
+       this.pathFile=res.pathFile;
+       this.playImage = 'http://localhost:8082/file/image/' + res.pathFile;
+       this.article.image = res.pathFile;
+       this.article.idEntreprise=1;
        console.log('File uploaded success');
-       this.afficherImage();
+
      },
      (error) => {
        console.error('Error uploading file:', error);
@@ -70,13 +73,6 @@ export class NouvelArticleComponent implements OnInit {
  }
 
 
-// Méthode pour afficher l'image ou démarrer le téléchargement
-afficherImage(){
-    this.fileUploadService.displayFile(this.pathFile).subscribe(
-      (response) => {
-        this.playImage=response
-      });
-  }
 
 
 
