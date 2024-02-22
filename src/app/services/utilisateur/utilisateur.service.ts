@@ -22,6 +22,12 @@ export class UtilisateurService {
   auth(authRequestDto: AuthRequestDto) {
     const url = `${this.baseUrl}/login`;
    return this.http.post<any>(url ,authRequestDto)
-  
+
+  }
+
+  getAll():Observable<Utilisateur[]> {
+    const  url= `${this.baseUrl}/api/v1/utilisateurs`;
+    return this.http.get<Utilisateur[]>(url)
+
   }
 }

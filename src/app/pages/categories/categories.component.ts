@@ -20,6 +20,7 @@ export class CategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAll()
   }
   nouvelleCategory(): void {
     this.router.navigate(['nouvellecategorie']);
