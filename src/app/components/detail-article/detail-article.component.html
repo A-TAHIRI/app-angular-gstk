@@ -1,30 +1,30 @@
 <div class="row mb-1 mr-0 custom-border">
     <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 ">
-      <img [src]="" width="100px" height="100px">
+      <img width="100px" height="100px">
     </div>
-  
+
   <!--  Details article-->
     <div class="col-md-5 custom-border-right mb-1 mt-1 "  >
       <div class="col">
         <div class="row">
           <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-11"></div>
+          <div class="col-md-11">{{article.codeArticle}}</div>
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-11"></div>
+          <div class="col-md-11">{{article.designation}}</div>
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-          <div class="col-md-11">€</div>
+          <div class="col-md-11">{{article.prixUnitaireHt}}€</div>
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-          <div class="col-md-11"> €</div>
+          <div class="col-md-11">{{article.prixUnitaireTtc}} €</div>
         </div>
       </div>
     </div>
-  
+
   <!--  details categorie-->
     <div class="col-md-3 custom-border-right mb-1 mt-1 ">
       <div class="row">
@@ -33,13 +33,13 @@
         </div>
         <div class="col-md-10">
           <div class="row">
-            <div class="col-md-12"></div>
-            <div class="col-md-12"></div>
+            <div class="col-md-12">{{article.categorie?.code}}</div>
+            <div class="col-md-12">{{article.categorie?.designation}}</div>
           </div>
         </div>
       </div>
     </div>
-  
+
   <!--  boutons action-->
     <div class="col-md-3 mb-1 mt-1 ">
       <div class="row">
@@ -73,7 +73,7 @@
           </div>
           <div class="modal-body">
             Etes vous-sur de vouloir supprimer cet article?
-          
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -85,5 +85,4 @@
       </div>
     </div>
   </div>
-  
-  
+

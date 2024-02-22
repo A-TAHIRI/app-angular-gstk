@@ -13,14 +13,14 @@ export class CategorieService {
 
   constructor(private http: HttpClient) { }
 
-  // Méthode pour récupérer un article 
+  // Méthode pour récupérer un article
   getCategorie(id: number): Observable<Object> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.get(url);
   }
 
   // Méthode pour ajouter un article
-  ajouterCategorie(categirie: Categorie): Observable<Object> {
+  ajouterCategorie(categirie: Categorie): Observable<CategorieDto> {
     const url =  this.baseUrl;
     return this.http.post(url, categirie);
   }
@@ -38,7 +38,7 @@ export class CategorieService {
   }
 
   // Méthode pour récupérer toutes les articles
-  getToutesCategories(): Observable<Object> {
+  getToutesCategories(): Observable<any> {
     const url =  this.baseUrl;
     return this.http.get(url);
   }

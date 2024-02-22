@@ -1,28 +1,28 @@
 <div class="col">
-    <div class="row m-3">
-      <div class="col-md-8 p-0">
-        <h1>Liste des articles mounir</h1>
-      </div>
-      <div class="col-md-4 text-right">
-        <app-boutton-action
+  <div class="row m-3">
+    <div class="col-md-8 p-0">
+      <h1>Liste des articles</h1>
+    </div>
+    <div class="col-md-4 text-right">
+      <app-boutton-action
         (clickEvent)="nouvelArticle()"
-        ></app-boutton-action>
-      </div>
-      <div class="alert alert-danger" *ngIf="errorMsg" >
-        {{ errorMsg }}
-      </div>
+      ></app-boutton-action>
     </div>
-    <div class="col m-3">
-      <app-detail-article></app-detail-article> 
+    <div class="alert alert-danger" *ngIf="errorsMsg.length > 0">
+      {{ errorsMsg }}
     </div>
-    <div class="col m-3"   *ngFor="let article of listArticle">
-                  {{article.designation}}
-    </div>
-    <div class="row mb-3">
-      <div class=" col-md-12 text-center" *ngIf="listArticle.length">
-        <app-pagination></app-pagination>
-      </div>
-    </div>
-  
   </div>
-  
+  <div class="col m-3">
+    <app-detail-article
+      *ngFor="let article of liste"
+      [article]="article"
+    >
+    </app-detail-article>
+  </div>
+  <div class="row mb-3" >
+    <div class=" col-md-12 text-center">
+      <app-pagination></app-pagination>
+    </div>
+  </div>
+
+</div>

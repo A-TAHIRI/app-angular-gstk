@@ -13,22 +13,17 @@ import { ArticleService } from 'src/app/services/article/article.service';
 })
 export class ArticleComponent implements OnInit {
 
- listArticle !:  ArticleDto[];
-    
-  errorMsg = '';
-
+ liste !:  ArticleDto[];
+  errorsMsg: Array<string> = [];
   constructor(
     private router: Router,
     private articleService: ArticleService
-   
+
     ) {  ;
   };
   ngOnInit(): void {
-    console.log("mounir");
-    console.log(this.listArticle);
-    
+    console.log(this.liste);
     this.articles();
-   
   }
 
 
@@ -42,12 +37,12 @@ export class ArticleComponent implements OnInit {
   }
 
    private articles() {
-     this.articleService.getToutesArticles().subscribe((data)=>{
-       this.listArticle = data;
-     
-     })
+     this.articleService.getToutesArticles().subscribe((data)=> {
+         this.liste = data;
+       }
+       )
     }
-  
-    
+
+
 
 }
