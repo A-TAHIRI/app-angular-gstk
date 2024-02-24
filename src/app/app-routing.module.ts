@@ -23,8 +23,9 @@ import { ArticleComponent } from './pages/article/article.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'inscrire', component: InscriptionComponent}, 
+  {path: 'inscrire', component: InscriptionComponent},
   {path: '', component: DashboardComponent,
+    canActivate: [ApplicationGuardService],
   children:[
     {path: 'statistiques', component: StatistiquesComponent,
     canActivate: [ApplicationGuardService]},
@@ -69,7 +70,7 @@ const routes: Routes = [
     }},
     {path:'categories', component: CategoriesComponent,
     canActivate: [ApplicationGuardService],
-  
+
      },
     {path:'nouvellecategorie', component: NouvelleCategoryComponent,
     canActivate: [ApplicationGuardService]},

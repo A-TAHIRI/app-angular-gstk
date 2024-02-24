@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Adresse } from 'src/app/models/adresse';
 import { Entreprise } from 'src/app/models/entreprise';
 import { EntrepriseService } from 'src/app/services/entreprise/entreprise.service';
+import {AuthRequestDto} from "../../dto/auth-request";
+import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
 
 @Component({
   selector: 'app-inscription',
@@ -16,7 +18,8 @@ export class InscriptionComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private entrepriseService: EntrepriseService
+    private entrepriseService: EntrepriseService,
+    private utilisateurService : UtilisateurService
   ) {}
 
   ngOnInit(): void {}
@@ -29,13 +32,26 @@ export class InscriptionComponent implements OnInit {
     this.entreprise.adresse = this.adresse;
     this.entrepriseService.add(this.entreprise).subscribe(
       (data) => {
-        console.log(data);
-        this.router.navigate(['']);
+        this.conectEntreprise()
       },
       (error) => {
         this.errorsMsg = error.error.errors;
       this.router.navigate(['inscription']);
       }
     );
+  }
+
+
+  conectEntreprise():void{
+    const authRequestDto: AuthRequestDto = {
+      email: this.entreprise.email,
+      mdp: 'som3R@nd0mP@$$word'
+    };
+    this.utilisateurService.auth(authRequestDto).subscribe((res)=>{
+      this.utilisateurService.setConnectedUser(authRequestDto);
+      localStorage.setItem('accessToken',  JSON.stringify(res.token) );
+      localStorage.setItem('origin', 'inscription');
+      this.router.navigate(['changermotdepasse']);
+    });
   }
 }
