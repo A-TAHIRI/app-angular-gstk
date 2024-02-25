@@ -58,7 +58,10 @@
             <div class="col">
               <input type="password" class="form-control" placeholder="Password" [(ngModel)]="utilisateur.mdp" name="mdp">
             </div>
-           <div class="col"></div>
+            <div class="col">
+              <input type="file" class="file-upload" (change)="onFileSelected($event)"  >
+              <input type="hidden" name="photo"  [(ngModel)]="utilisateur.photo" [value]="pathFile">
+            </div>
           </div>
         </form>
       </div>
@@ -73,6 +76,5 @@
         Enregitrer
       </button>
     </div>
-  
+
   </div>
-  

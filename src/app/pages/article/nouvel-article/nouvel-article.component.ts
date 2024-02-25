@@ -60,7 +60,6 @@ export class NouvelArticleComponent implements OnInit {
        this.pathFile=res.pathFile;
        this.playImage = 'http://localhost:8082/file/image/' + res.pathFile;
        this.article.image = res.pathFile;
-       this.article.idEntreprise=1;
        console.log('File uploaded success');
 
      },

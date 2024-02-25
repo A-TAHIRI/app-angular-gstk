@@ -38,7 +38,10 @@
       <div class="mb-3">
         <input type="text" class="form-control" placeholder="Numero de telephone" [(ngModel)]="entreprise.numTel">
       </div>
-
+      <div class="mb-3">
+        <input type="file" class="file-upload" (change)="onFileSelected($event)"  >
+        <input type="hidden" name="image"  [(ngModel)]="entreprise.image" [value]="pathFile">
+      </div>
       <div class="mb-3 d-flex justify-content-between">
         <a [routerLink]="['/login']" class="btn btn-link">Se connecter</a>
         <button type="button" class="btn btn-primary" (click)="save()">

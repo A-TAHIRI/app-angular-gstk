@@ -8,10 +8,10 @@ export interface Entreprise {
     description?: string,
     adresse?: Adresse,
     codeFiscal?: string,
-    photo?: string,
+    image?: string,
     email?: string,
     numTel?: string,
     steWeb?: string,
-   
+
 
 }

@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * login
+   */
 
   login(){
     this.utilisateurService.auth(this.authRequestDto).subscribe(
@@ -31,12 +34,7 @@ export class LoginComponent implements OnInit {
        console.log(data)
        // Stockage du jeton d'accès dans le stockage local (localStorage)
         localStorage.setItem('accessToken' , JSON.stringify(data.token));
-        debugger;
-        this.utilisateurService.getUtilisateurByEmail(this.authRequestDto.email).subscribe((user)=>{
-          console.log(user)
-          this.utilisateurService.setConnectedUser(user);
-          localStorage.setItem('origin', 'utilisateur');
-        });
+       this.getUserByEmail();
        this.router.navigate(['']);
       },
       (error) => {
@@ -46,8 +44,14 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  /**
+   * recupérer l'user connécté
+   */
   getUserByEmail():void{
-
+    this.utilisateurService.getUtilisateurByEmail(this.authRequestDto.email).subscribe((user)=>{
+      console.log(user)
+      this.utilisateurService.setConnectedUser(user);
+    });
   }
 
 }

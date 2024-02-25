@@ -2,11 +2,11 @@
     <div class="card col-md-4 text-center mr-3">
       <div class="col">
         <div class="mb-3 mt-3">
-          <img src="assets/product.png" class="rounded-circle" width="200px" height="200px"/>
+          <img [src]="'http://localhost:8082/file/image/'+utilisateur.photo" class="rounded-circle" width="200px" height="200px"/>
         </div>
         <div class="mb-3">
-          <h2>Nom Prenom</h2>
-          <small class="form-text text-muted">Adresse, Ville, 12345</small>
+          <h2>{{utilisateur.nom}}&nbsp;{{utilisateur.prenom}}</h2>
+          <small class="form-text text-muted">{{utilisateur.adresse?.adresse1}}&nbsp;{{utilisateur.adresse?.ville}}&nbsp;{{utilisateur.adresse?.pays}}</small>
         </div>
         <div class="col mb-3 p-0">
           <button type="button" class="btn btn-primary mr-3"><i class="fas fa-pencil-alt"></i>&nbsp;Modifier le
@@ -20,27 +20,27 @@
         <tbody>
         <tr>
           <th scope="row">Nom complet</th>
-          <td>nom prenom</td>
+          <td>{{utilisateur.nom}}&nbsp;{{utilisateur.prenom}}</td>
         </tr>
         <tr>
           <th scope="row">Email</th>
-          <td>adresse@email.com</td>
+          <td>{{utilisateur.email}}</td>
         </tr>
         <tr>
           <th scope="row">telephone</th>
-          <td>011 22 33 44 55 66</td>
+          <td>{{utilisateur.numTel}}</td>
         </tr>
         <tr>
           <th scope="row">Adresse</th>
-          <td>Adresse, Ville, 12345</td>
+          <td>{{utilisateur.adresse?.adresse1}}&nbsp;{{utilisateur.adresse?.ville}}&nbsp;{{utilisateur.adresse?.pays}}</td>
         </tr>
         <tr>
           <th scope="row">Entreprise</th>
-          <td>Nom entreprise</td>
+          <td>{{utilisateur.entreprise?.nom}}</td>
         </tr>
         </tbody>
       </table>
     </div>
-  
+
   </div>
-  
+

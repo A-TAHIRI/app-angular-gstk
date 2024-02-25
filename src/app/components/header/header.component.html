@@ -15,7 +15,7 @@
 
         <div class="col-md-3">
           <a href="javascript:void(0);" [routerLink]="['/profil']">
-            <img src="favicon.ico" class="rounded-circle" />
+            <img [src]="'http://localhost:8082/file/image/'+connectedUser.photo" width="50" height="50" class="rounded-circle" />
           </a>
         </div>
       </div>

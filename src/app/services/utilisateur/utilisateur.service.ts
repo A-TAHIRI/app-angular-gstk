@@ -19,18 +19,30 @@ export class UtilisateurService {
     private  router:Router
   ) { }
 
-
+  /**
+   * service pour ajouter un user à la bdd
+   * @param utilisateur
+   * @constructor
+   */
   AjouterUtilisateur(utilisateur: Utilisateur): Observable<Object> {
     const url = `${this.baseUrl}/register`;
     return this.http.post(url, utilisateur);
   }
 
+  /**
+   * methode de l'etentifiant
+   * @param authRequestDto
+   */
   auth(authRequestDto: AuthRequestDto) {
     const url = `${this.baseUrl}/login`;
    return this.http.post<any>(url ,authRequestDto)
 
   }
 
+  /**
+   * retourne  l'utilisateur  récupiré par son email
+   * @param email
+   */
   getUtilisateurByEmail( email  ?: string ):Observable<UtilisateurDto> {
     if (email !== undefined){
       const  base = "http://localhost:8082/api/v1/utilisateurs/email"
@@ -40,10 +52,14 @@ export class UtilisateurService {
     } return of();
   }
 
+  /**
+   * methode qui retourne tous les utilisateurs
+   */
   getAll():Observable<Utilisateur[]> {
     const  url= `${this.baseUrl}/api/v1/utilisateurs`;
     return this.http.get<Utilisateur[]>(url)
   }
+
 
   changerMotDePasse(changerMotDePasseDto: ChangerMotDePasseUtilisateurDto) {
     const url = ` ${this.baseUrl}/api/v1/utilisateurs/update/password`;
@@ -54,13 +70,19 @@ export class UtilisateurService {
   setAccessTken(authReponse: any) {
     localStorage.setItem('accessToken', JSON.stringify(authReponse))
   }
-  */
-
+*/
+  /**
+   * ajouter user connécté au localeStorage
+   * @param utilisateur
+   */
   setConnectedUser( utilisateur : Utilisateur ):void{
     localStorage.setItem('connectedUser', JSON.stringify(utilisateur));
 
   }
 
+  /**
+   * recupirer user connecté à partire de localStorage
+   */
   getConnectedUser(): Utilisateur{
     if ( localStorage.getItem('connectedUser') ){
      return  JSON.parse(localStorage.getItem('connectedUser') as  string);
@@ -68,8 +90,14 @@ export class UtilisateurService {
       return {};
 
   }
+  changerMotDepasse(changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto ):Observable<ChangerMotDePasseUtilisateurDto> {
+    const url = this.baseUrl+`/api/v1/utilisateurs/update/password`
+    return   this.http.post(url, changerMotDePasseUtilisateurDto);
+  }
 
-  //Todo
+  /**
+   * method de tester le login et la validité de tocken
+   */
   isUserLogedAndAccessTokenValide() :boolean{
     if (localStorage.getItem('accessToken')){
       //TODO il fout verifier si le acces token est valid

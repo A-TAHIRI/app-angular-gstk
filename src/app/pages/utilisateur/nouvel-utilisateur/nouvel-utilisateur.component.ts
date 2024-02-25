@@ -4,6 +4,7 @@ import { UtilisateurDto } from 'src/app/dto/utilisateur-dto';
 import { Adresse } from 'src/app/models/adresse';
 import { Utilisateur } from 'src/app/models/utilisateur';
 import { UtilisateurService } from 'src/app/services/utilisateur/utilisateur.service';
+import {FileUploadService} from "../../../services/upload/file-upload.service";
 
 @Component({
   selector: 'app-nouvel-utilisateur',
@@ -12,18 +13,20 @@ import { UtilisateurService } from 'src/app/services/utilisateur/utilisateur.ser
 })
 export class NouvelUtilisateurComponent implements OnInit {
   utilisateur: Utilisateur = new Utilisateur();
-  adresse: Adresse ={};
+  adresse: Adresse = {};
   errorsMsg: Array<string> = [];
+  pathFile = '';
 
   constructor(
     private router: Router,
-    private utilisateurService: UtilisateurService
+    private utilisateurService: UtilisateurService,
+    private fileUploadService: FileUploadService
   ) {
-   
+
   }
 
   ngOnInit(): void {
-   
+
   }
 
   cancel(): void {
@@ -35,12 +38,27 @@ export class NouvelUtilisateurComponent implements OnInit {
     this.utilisateurService
       .AjouterUtilisateur(this.utilisateur)
       .subscribe((data) => {
-        console.log(data);
-        this.router.navigate(['utilisateurs']);
-      }, (err) => {
-        this.errorsMsg = err.error.errors;
-      }
-      
+          console.log(data);
+          this.router.navigate(['utilisateurs']);
+        }, (err) => {
+          this.errorsMsg = err.error.errors;
+        }
       );
+  }
+  onFileSelected(event:any){
+    const file: File = event.target.files[0];
+    this.fileUploadService.uploadFile(file).subscribe(
+      (res : any) => {
+        this.pathFile=res.pathFile;
+        this.utilisateur.photo = res.pathFile;
+        console.log('File uploaded success');
+
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+      }
+    );
+
+
   }
 }

@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
-    this.connectedUser= this.utilisateurService.getConnectedUser()
+    this.connectedUser = this.utilisateurService.getConnectedUser()
   }
 
 }

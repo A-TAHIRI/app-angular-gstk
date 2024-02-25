@@ -11,7 +11,7 @@ import * as fr from '@angular/common/locales/fr'
 import { registerLocaleData } from '@angular/common';
 import { UcfirstPipe } from './pipes/ucfirst.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -42,6 +42,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { NouvelleCategoryComponent } from './pages/categories/nouvelle-category/nouvelle-category.component';
 import { NouvelUtilisateurComponent } from './pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur.component';
 import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/changer-mot-de-passe.component';
+import {HttpInterceptorService} from "./services/interceptor/http-interceptor.service";
 
 
 @NgModule({
@@ -82,7 +83,7 @@ import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/
     NouvelleCategoryComponent,
     NouvelUtilisateurComponent,
     ChangerMotDePasseComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -92,7 +93,12 @@ import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/
     HttpClientModule,
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'fr_FR'}
+    {provide: LOCALE_ID, useValue: 'fr_FR'},
+    {   provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
+
   ],
   bootstrap: [AppComponent]
 })
