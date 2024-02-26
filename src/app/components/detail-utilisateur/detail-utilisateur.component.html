@@ -1,9 +1,9 @@
 <div class="row mb-1 mr-0 custom-border">
-    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 ">
-      <img src="assets/product.png" width="100px" height="100px">
+    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " *ngIf="utilisateur.photo">
+      <img [src]="'http://localhost:8082/file/image/'+utilisateur.photo " width="100px" height="100px" alt="user">
     </div>
 
-    <!--  Details article-->
+    <!--  Details utilisateur-->
     <div class="col-md-5 custom-border-right mb-1 mt-1 ">
       <div class="col">
         <div class="row">
@@ -18,12 +18,12 @@
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-phone-alt blue-color"></i></div>
-          <div class="col-md-10">0011 22 33 44 55 66</div>
+          <div class="col-md-10">{{utilisateur.numTel}}</div>
         </div>
       </div>
     </div>
 
-    <!--  details categorie-->
+    <!--  details adresse-->
     <div class="col-md-3 custom-border-right mb-1 mt-1 ">
       <div class="col">
         <div class="row">
@@ -56,7 +56,8 @@
         </div>
         <div class="col-md-4">
           <button type="button" class="btn btn-link ">
-            <i class="far fa-list-alt"></i>&nbsp;Details
+            <i class="far fa-list-alt"></i>&nbsp;<br>
+            Details
           </button>
         </div>
       </div>

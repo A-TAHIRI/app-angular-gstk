@@ -74,10 +74,24 @@ const routes: Routes = [
      },
     {path:'nouvellecategorie', component: NouvelleCategoryComponent,
     canActivate: [ApplicationGuardService]},
+
+    {path:'nouvellecategorie/:idCategorie', component: NouvelleCategoryComponent,
+      canActivate: [ApplicationGuardService]},
+
     {path:'utilisateurs', component: UtilisateurComponent,
     canActivate: [ApplicationGuardService]},
-    {path:'nouvelutilisateur', component: NouvelUtilisateurComponent},
-    {path:'profil', component: ProfilComponent},
+
+    {path:'nouvelutilisateur', component: NouvelUtilisateurComponent,
+      canActivate: [ApplicationGuardService]
+    },
+    {path:'nouvelutilisateur/:idUtilisateur', component: NouvelUtilisateurComponent,
+      canActivate: [ApplicationGuardService]
+    },
+
+    {path:'profil', component: ProfilComponent,
+      canActivate: [ApplicationGuardService]
+    },
+
     {path:'changermotdepasse' , component: ChangerMotDePasseComponent,
     canActivate: [ApplicationGuardService]},
   ]

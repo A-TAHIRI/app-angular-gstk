@@ -21,10 +21,18 @@ export class UtilisateurComponent implements OnInit {
   this.tousUtilisateurs()
   }
 
+
+
+  /**
+   * naviger vers la page nouvelUtilisateur
+   */
   nouvelUtilisateur(): void {
     this.router.navigate(['nouvelutilisateur']);
   }
 
+  /**
+   * récupirer tous les utilisateurs
+   */
   tousUtilisateurs(){
     this.utilisateurService.getAll().subscribe((data)=>{
       this.liste= data;

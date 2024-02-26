@@ -45,6 +45,8 @@ import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/
 import {HttpInterceptorService} from "./services/interceptor/http-interceptor.service";
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,16 +93,21 @@ import {HttpInterceptorService} from "./services/interceptor/http-interceptor.se
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'fr_FR'},
+    /*
     {   provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
     }
 
+     */
+
   ],
   bootstrap: [AppComponent]
+
 })
 
 export class AppModule

@@ -17,31 +17,46 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
 
     ) { }
 
-  // Méthode pour récupérer un article
+  /**
+   *  Service pour récupérer un article
+   * @param id
+   */
   getArticle(id: number): Observable<ArticleDto> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.get(url);
   }
 
-  // Méthode pour ajouter un article
+  /**
+   * Service pour ajouter un article
+   * @param article
+   */
   ajouterArticle(article: Article): Observable<Article> {
     const url=this.baseUrl;
     return this.http.post(url, article);
   }
 
-  // Méthode pour mettre à jour un article
+  /**
+   *  Service pour mettre à jour un article
+   * @param id
+   * @param article
+   */
   mettreAJourArticle(id: number, article: Article): Observable<ArticleDto> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.put(url, article);
   }
 
-  // Méthode pour supprimer un article
+  /**
+   * Service pour supprimer un article
+   * @param id
+   */
   supprimerArticle(id: number): Observable<ArticleDto> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.delete(url);
   }
 
-  // Méthode pour récupérer toutes les articles
+  /**
+   * Service pour récupérer toutes les articles
+   */
   getToutesArticles():  Observable<ArticleDto[]> {
     const url =  this.baseUrl;
     console.log(url);

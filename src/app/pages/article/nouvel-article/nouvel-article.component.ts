@@ -6,6 +6,7 @@ import { ArticleService } from 'src/app/services/article/article.service';
 import { CategorieService } from 'src/app/services/categorie/categorie.service';
 import {FileUploadService} from "../../../services/upload/file-upload.service";
 import {ArticleDto} from "../../../dto/article-dto";
+import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 
 @Component({
   selector: 'app-nouvel-article',
@@ -27,7 +28,8 @@ export class NouvelArticleComponent implements OnInit {
     private router: Router,
     private articleService: ArticleService,
     private categorieService: CategorieService,
-    private fileUploadService: FileUploadService
+    private fileUploadService: FileUploadService,
+    private utilisateurService: UtilisateurService,
   ) {}
 
   ngOnInit(): void {
@@ -42,8 +44,13 @@ export class NouvelArticleComponent implements OnInit {
     this.router.navigate(['articles']);
   }
 
+  /**
+   * Method pou ejouter un article à la bdd
+   */
   save(){
     this.article.categorie=this.categorie;
+   // @ts-ignore
+    this.article.idEntreprise=this.utilisateurService.getConnectedUser().entreprise.id
     this.articleService.ajouterArticle(this.article).subscribe(() => {
       this.router.navigate(['articles']);
     },
@@ -53,6 +60,10 @@ export class NouvelArticleComponent implements OnInit {
     );
   }
 
+  /**
+   * Method upload Image
+   * @param event
+   */
  onFileSelected(event:any){
    const file: File = event.target.files[0];
    this.fileUploadService.uploadFile(file).subscribe(

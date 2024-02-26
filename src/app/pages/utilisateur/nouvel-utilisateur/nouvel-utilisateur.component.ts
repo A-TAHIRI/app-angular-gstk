@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { UtilisateurDto } from 'src/app/dto/utilisateur-dto';
 import { Adresse } from 'src/app/models/adresse';
 import { Utilisateur } from 'src/app/models/utilisateur';
@@ -16,25 +16,33 @@ export class NouvelUtilisateurComponent implements OnInit {
   adresse: Adresse = {};
   errorsMsg: Array<string> = [];
   pathFile = '';
+  protected readonly event = event;
 
   constructor(
     private router: Router,
     private utilisateurService: UtilisateurService,
-    private fileUploadService: FileUploadService
+    private fileUploadService : FileUploadService,
   ) {
 
   }
 
   ngOnInit(): void {
-
   }
 
+  /**
+   * Method pour retourner à la pages utilisateurs
+   */
   cancel(): void {
     this.router.navigate(['utilisateurs']);
   }
 
+  /**
+   * Method pur ajouter utilisateur à la bdd
+   */
   save() {
     this.utilisateur.adresse = this.adresse;
+
+    this.utilisateur.entreprise= this.utilisateurService.getConnectedUser().entreprise;
     this.utilisateurService
       .AjouterUtilisateur(this.utilisateur)
       .subscribe((data) => {
@@ -45,11 +53,16 @@ export class NouvelUtilisateurComponent implements OnInit {
         }
       );
   }
-  onFileSelected(event:any){
+
+  /**
+   * Method Upload image
+   * @param event
+   */
+  onFileSelected(event:any) {
     const file: File = event.target.files[0];
     this.fileUploadService.uploadFile(file).subscribe(
-      (res : any) => {
-        this.pathFile=res.pathFile;
+      (res: any) => {
+        this.pathFile = res.pathFile;
         this.utilisateur.photo = res.pathFile;
         console.log('File uploaded success');
 
@@ -58,7 +71,6 @@ export class NouvelUtilisateurComponent implements OnInit {
         console.error('Error uploading file:', error);
       }
     );
-
-
   }
+
 }

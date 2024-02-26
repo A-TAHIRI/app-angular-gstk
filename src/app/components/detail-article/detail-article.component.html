@@ -1,6 +1,6 @@
 <div class="row mb-1 mr-0 custom-border">
-    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 ">
-      <img [src]="'http://localhost:8082/file/image/'+article.image" width="100px" height="100px">
+    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " *ngIf="article.image">
+      <img [src]="'http://localhost:8082/file/image/'+article.image" width="100px" height="100px" alt="article">
     </div>
 
   <!--  Details article-->
@@ -55,7 +55,7 @@
         </div>
         <div class="col-md-4">
           <button type="button" class="btn btn-link ">
-            <i class="far fa-list-alt"></i>&nbsp;Details
+            <i class="far fa-list-alt"></i>&nbsp;<br> Details
           </button>
         </div>
       </div>

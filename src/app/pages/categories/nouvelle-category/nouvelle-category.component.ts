@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategorieService} from "../../../services/categorie/categorie.service";
 import {Categorie} from "../../../models/categirie";
 import {CategorieDto} from "../../../dto/categorie-dto";
+import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 
 @Component({
   selector: 'app-nouvelle-category',
@@ -10,25 +11,41 @@ import {CategorieDto} from "../../../dto/categorie-dto";
   styleUrls: ['./nouvelle-category.component.css']
 })
 export class NouvelleCategoryComponent implements OnInit {
- categorie: CategorieDto= {};
+ categorie : CategorieDto= {};
   errorsMsg: Array<string>= [];
 
   constructor(
     private router: Router,
-    private categorieService: CategorieService
+    private categorieService: CategorieService,
+    private utilisateurService : UtilisateurService,
+    private  activatedRouter:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    const idCategorie = this.activatedRouter.snapshot.params['idCategorie'] ;
+        if (idCategorie){
+          this.categorieService.getCategorie(idCategorie).subscribe(cat=>{
+            this.categorie= cat;
+          })
+        }
   }
 
+  /**
+   * Method pour retourner vers la pagr categories
+   */
   cancel(): void {
     this.router.navigate(['categories']);
   }
 
+  /**
+   * Method pour ajouter une categories à la bdd
+   */
   save(){
-   this.categorieService.ajouterCategorie(this.categorie).subscribe((data)=>{
+    // @ts-ignore
+    this.categorie.idEntreprise = this.utilisateurService.getConnectedUser().entreprise.id;
+    this.categorieService.ajouterCategorie(this.categorie).subscribe((data)=>{
        console.log(data);
-       this.router.navigate(['']);
+       this.router.navigate(['categories']);
    },
      err =>{
      this.errorsMsg = err.error.errors;

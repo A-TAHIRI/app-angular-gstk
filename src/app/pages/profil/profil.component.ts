@@ -19,8 +19,23 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.utilisateur = this.utilsateurService.getConnectedUser();
   }
+
+  /**
+   * Method pour chager le mot de passe
+   */
   modifierMotDePasse(): void {
     this.router.navigate(['changermotdepasse']);
+  }
+
+  /**
+   * Method de déconection
+   */
+  deconexion(){
+    localStorage.removeItem('accessToken');
+    this.router.navigate(['login']);
+  }
+  modifierUser( id ?: number){
+    this.router.navigate(['nouvelutilisateur' , id] )
   }
 
 }

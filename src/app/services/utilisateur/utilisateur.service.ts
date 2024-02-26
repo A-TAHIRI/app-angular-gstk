@@ -40,6 +40,16 @@ export class UtilisateurService {
   }
 
   /**
+   * Service qui retourn un utilisateur par son id
+   * @param id
+   */
+  getUtilisateur(id: number){
+    const url = this.baseUrl+`/api/v1/utilisateurs/${id}`;
+   return  this.http.get(url);
+  }
+
+
+  /**
    * retourne  l'utilisateur  récupiré par son email
    * @param email
    */
