@@ -49,11 +49,8 @@ export class CategorieService {
    * @param id
    */
   supprimerCategorie(id?: number): Observable<Object> {
-    if(id){
       const url =  this.baseUrl+`/${id}`;
       return this.http.delete(url);
-    }
-   return of();
   }
 
   /**

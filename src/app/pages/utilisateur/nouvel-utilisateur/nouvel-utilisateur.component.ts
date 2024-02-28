@@ -30,9 +30,7 @@ export class NouvelUtilisateurComponent implements OnInit {
   ngOnInit(): void {
     const idUser = this.activatedRouter.snapshot.params['idUtilisateur'];
     if(idUser){
-      this.utilisateur.id= idUser;
-    const user: any =   this.utilisateurService.getUtilisateur(idUser);
-        this.utilisateurService.update(idUser , user).
+   this.utilisateurService.getUtilisateur(idUser).
       subscribe((data)=>{
         this.utilisateur=data;
         this.adresse= this.utilisateur.adresse ? this.utilisateur.adresse :{};

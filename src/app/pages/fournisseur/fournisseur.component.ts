@@ -10,6 +10,7 @@ import {FournisseurService} from "../../services/fournisseur/fournisseur.service
 })
 export class FournisseurComponent implements OnInit {
    liste:Array<Fournisseur>= [];
+   errorsMsg= '';
 
   constructor(
     private router: Router,
@@ -18,6 +19,10 @@ export class FournisseurComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  this.fournisseurs()
+  }
+
+  fournisseurs(){
     this.fournisseurService.getAll().subscribe(data=>{
       this.liste=data;
     })
@@ -25,6 +30,14 @@ export class FournisseurComponent implements OnInit {
 
   nouveauFournisseur(): void {
     this.router.navigate(['nouveaufournisseur']);
+  }
+
+  handleSuppression(event: any) {
+    if( event === 'success'){
+      this.fournisseurs();
+    }else {
+      this.errorsMsg=event;
+    }
   }
 
 }

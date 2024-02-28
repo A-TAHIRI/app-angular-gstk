@@ -14,6 +14,7 @@
       <app-detail-clt-frs *ngFor=" let fournisseur of liste"
        [clientFournisseur]="fournisseur"
           [origin]="'fournisseur'"
+          (suppritionResult)="handleSuppression($event)"
 
 
       ></app-detail-clt-frs>

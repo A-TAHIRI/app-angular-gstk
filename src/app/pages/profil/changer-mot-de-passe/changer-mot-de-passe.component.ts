@@ -13,6 +13,7 @@ export class ChangerMotDePasseComponent implements OnInit {
   utilisateur: UtilisateurDto = {};
   changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto = {};
   ancienMotDePasse = '';
+  errorMsg ='';
 
   constructor(
     private router: Router,
@@ -33,10 +34,13 @@ export class ChangerMotDePasseComponent implements OnInit {
     this.router.navigate(['profil']);
   }
 
-  chagerMotDePasseUtilisateur(): void {
+  chagerMotDePasseUtilisateur() {
     this.changerMotDePasseUtilisateurDto.id= this.utilisateurService.getConnectedUser().id;
     this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateurDto).subscribe((data) => {
-        this.router.navigate(['profil']);
+      this.router.navigate(['profil'])
+    },error => {
+
+      this.errorMsg=error.error.message;
     })
   }
 

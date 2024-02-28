@@ -10,10 +10,13 @@
       </div>
     </div>
     <div class="col m-3">
-
+      <div class="alert alert-danger" *ngIf="errorsMsg">
+        {{errorsMsg}}
+      </div>
       <app-detail-clt-frs *ngFor=" let client of liste "
        [clientFournisseur]="client"
           [origin]="'client'"
+         (suppritionResult)="handleSuppression($event)"
       ></app-detail-clt-frs>
     </div>
     <div class="row mb-3" >

@@ -13,7 +13,7 @@ export class Utilisateur {
     public mdp?: string,
     public numTel?: string,
     public adresse?: Adresse,
-    public dateDeNaissance?: number,
+    public dateDeNaissance?: Date,
     public idEntreprise?: number,
     public entreprise?: Entreprise,
     public photo?: string,

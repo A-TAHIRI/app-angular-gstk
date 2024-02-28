@@ -10,6 +10,7 @@ import {Client} from "../../models/client";
 })
 export class ClientComponent implements OnInit {
   liste !: Client[];
+   errorsMsg ='';
 
   constructor(
     private router: Router,
@@ -18,6 +19,10 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.clients();
+  }
+
+  clients(){
     this.clientService.getAll().subscribe(data=>{
       this.liste=data;
     })
@@ -32,4 +37,11 @@ export class ClientComponent implements OnInit {
   }
 
 
+  handleSuppression(event: any) {
+    if( event === 'success'){
+      this.clients();
+    }else {
+      this.errorsMsg=event;
+    }
+  }
 }

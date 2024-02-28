@@ -84,7 +84,7 @@ update(id : number , utilisateur: Utilisateur){
 
   changerMotDePasse(changerMotDePasseDto: ChangerMotDePasseUtilisateurDto) {
     const url = ` ${this.baseUrl}/api/v1/utilisateurs/update/password`;
-   return  this.http.post<any>(url,changerMotDePasseDto )
+   return  this.http.put<any>(url,changerMotDePasseDto )
   }
 
 /*

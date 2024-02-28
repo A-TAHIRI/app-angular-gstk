@@ -3,7 +3,7 @@ import { EntrepriseDto } from "./entreprise-dto";
 import { RoleDto } from "./role-dto";
 
 export interface UtilisateurDto {
-   
+
        id?: number,
        creationDate?: number,
        lastModifiedDate?: number,
@@ -12,12 +12,11 @@ export interface UtilisateurDto {
        email?: string,
        mdp?: string,
        numTel?: string,
-       dateDeNaissance?: number,
+       dateDeNaissance?: Date,
        adresse?: AdresseDto,
        idEntreprise?: number,
        entreprise?: EntrepriseDto,
        photo?: string,
        role?: Array<RoleDto>
- 
+
   }
-  

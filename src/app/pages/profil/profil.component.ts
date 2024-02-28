@@ -32,6 +32,7 @@ export class ProfilComponent implements OnInit {
    */
   deconexion(){
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('connectedUser')
     this.router.navigate(['login']);
   }
   modifierUser( id ?: number){

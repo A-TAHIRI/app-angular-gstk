@@ -49,12 +49,9 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
    * Service pour supprimer un article
    * @param id
    */
-  delet(id ?: number){
-    if (id){
-      const url =  this.baseUrl+`/${id}`;
-      return this.http.delete(url);
-    }
-  return  of();
+  delet(id?: number){
+    const url= this.baseUrl+`/${id}`;
+    return  this.http.delete(url);
   }
 
   /**
