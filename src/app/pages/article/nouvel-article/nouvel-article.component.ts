@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, CanActivate, Router} from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { Categorie } from 'src/app/models/categirie';
 import { ArticleService } from 'src/app/services/article/article.service';
@@ -30,14 +30,28 @@ export class NouvelArticleComponent implements OnInit {
     private categorieService: CategorieService,
     private fileUploadService: FileUploadService,
     private utilisateurService: UtilisateurService,
+    private activatedRouter : ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.categorieService.getToutesCategories()
-    .subscribe(data => {
-      this.liste=data;
-    });
+   this.getAllCategorie();
+   const id =this.activatedRouter.snapshot.params['idArticle'];
+   if(id){
+     this.articleService.getArticle(id).subscribe((data)=>{
+       this.article=data;
+       this.categorie= this.article.categorie ? this.article.categorie:{};
+     })
+   }
+  }
 
+  /**
+   * récupérer tous les categories
+   */
+  getAllCategorie(){
+    this.categorieService.getToutesCategories()
+      .subscribe(data => {
+        this.liste=data;
+      });
   }
 
   cancel(): void {
@@ -49,9 +63,8 @@ export class NouvelArticleComponent implements OnInit {
    */
   save(){
     this.article.categorie=this.categorie;
-   // @ts-ignore
-    this.article.idEntreprise=this.utilisateurService.getConnectedUser().entreprise.id
-    this.articleService.ajouterArticle(this.article).subscribe(() => {
+    this.article.idEntreprise=this.utilisateurService.getConnectedUser().entreprise?.id
+    this.articleService.add(this.article).subscribe(() => {
       this.router.navigate(['articles']);
     },
       error => {
@@ -83,10 +96,9 @@ export class NouvelArticleComponent implements OnInit {
  }
 
 
-
-
-
-
-
-
+  calculetTTC() {
+    if(this.article.prixUnitaireHt && this.article.tauxTva){
+      this.article.prixUnitaireTtc = +this.article.prixUnitaireHt +(+(this.article.prixUnitaireHt*(this.article.tauxTva/100)));
+    }
+  }
 }

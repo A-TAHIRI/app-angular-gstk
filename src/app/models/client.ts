@@ -3,7 +3,7 @@ import { CommandeClient } from "./commande-client";
 
 
 export interface Client {
-  
+
     id?: number,
     creationDate?: number,
     lastModifiedDate?: number,
@@ -11,9 +11,9 @@ export interface Client {
     prenom?: string,
     adresse?: Adresse,
     photo?: string,
-    mail?: string,
+    email?: string,
     numTel?: string,
     idEntreprise?: number,
     commandeClients?: Array<CommandeClient>
-  
+
 }

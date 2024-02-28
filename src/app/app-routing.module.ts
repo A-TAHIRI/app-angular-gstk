@@ -33,6 +33,8 @@ const routes: Routes = [
     canActivate: [ApplicationGuardService]},
     {path: 'nouvelarticle', component: NouvelArticleComponent,
     canActivate: [ApplicationGuardService]},
+    {path: 'nouvelarticle/:idArticle', component: NouvelArticleComponent,
+      canActivate: [ApplicationGuardService]},
     {path: 'mvtstk', component: MvtstkComponent,
     canActivate: [ApplicationGuardService]},
     {path:'clients', component: ClientComponent,
@@ -42,6 +44,11 @@ const routes: Routes = [
     data: {
       origin: 'client'
     }},
+    {path: 'nouveauclient/:id', component: NouveauCltFrsComponent,
+      canActivate: [ApplicationGuardService],
+      data: {
+        origin: 'client'
+      }},
     {path: 'commandesclient', component: CmdCltFrsComponent,
     canActivate: [ApplicationGuardService],
     data: {
@@ -63,6 +70,11 @@ const routes: Routes = [
     data: {
       origin: 'fournisseur'
     }},
+    {path: 'nouveaufournisseur/:id', component: NouveauCltFrsComponent,
+      canActivate: [ApplicationGuardService],
+      data: {
+        origin: 'fournisseur'
+      }},
     {path: 'nouvellecommandefrs', component: NouveauCltFrsComponent,
     canActivate: [ApplicationGuardService],
       data: {

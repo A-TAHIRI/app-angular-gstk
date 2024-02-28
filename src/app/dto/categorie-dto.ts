@@ -6,6 +6,7 @@ export interface CategorieDto {
   lastModifiedDate?: number;
   code?: string;
   designation?: string;
+  image?: string;
   idEntreprise?: number;
   articles?: Array<ArticleDto>;
 }

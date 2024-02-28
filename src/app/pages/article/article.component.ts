@@ -14,7 +14,7 @@ import { ArticleService } from 'src/app/services/article/article.service';
 export class ArticleComponent implements OnInit {
 
  liste !:  ArticleDto[];
-  errorsMsg: Array<string> = [];
+  errorsMsg='';
   constructor(
     private router: Router,
     private articleService: ArticleService
@@ -37,12 +37,19 @@ export class ArticleComponent implements OnInit {
   }
 
    private articles() {
-     this.articleService.getToutesArticles().subscribe((data)=> {
+     this.articleService.getAll().subscribe((data)=> {
          this.liste = data;
+
        }
        )
     }
 
 
-
+  handleSuppression(event: any) {
+    if( event === 'success'){
+      this.articles();
+    }else {
+      this.errorsMsg=event;
+    }
+  }
 }

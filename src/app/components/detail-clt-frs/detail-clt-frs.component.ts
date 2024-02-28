@@ -10,16 +10,31 @@ export class DetailCltFrsComponent  implements OnInit{
 
   @Input()
   origin = '';
+  @Input()
+  clientFournisseur : any= {};
 
-  constructor(   ) { }
+  constructor(
+    private  router: Router,
+    private  activatedRouter : ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-
-
     };
+
+  /**
+   * rout pour modifier client/fournisseur
+   * @param id
+   */
+  modifierClientFournisseur():void {
+    if (this.origin === 'client') {
+      this.router.navigate(['nouveauclient', this.clientFournisseur.id])
+    } else if (this.origin === 'fournisseur') {
+      this.router.navigate(['nouveaufournisseur',this.clientFournisseur.id ])
+    }
   }
+}
 
 
-  
+
 
 

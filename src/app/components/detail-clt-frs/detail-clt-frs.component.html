@@ -1,36 +1,36 @@
 <div class="row mb-1 mr-0 custom-border">
-    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 ">
-      <img [src]="" width="100px" height="100px">
+    <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " *ngIf="clientFournisseur.photo">
+        <img [src]="'http://localhost:8082/file/image/'+clientFournisseur.photo" width="100px" height="100px" alt="article">
     </div>
-  
-    <!--  Details article-->
+
+    <!--  Details client/fournisseur-->
     <div class="col-md-5 custom-border-right mb-1 mt-1 ">
       <div class="col">
         <div class="row">
           <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-10"></div>
+          <div class="col-md-10">{{ clientFournisseur.nom }}</div>
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-          <div class="col-md-10"></div>
+          <div class="col-md-10">{{ clientFournisseur.prenom }}</div>
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-phone-alt blue-color"></i></div>
-          <div class="col-md-10"></div>
+          <div class="col-md-10">{{ clientFournisseur.numTel }}</div>
         </div>
       </div>
     </div>
-  
-    <!--  details categorie-->
+
+    <!--  details adresse-->
     <div class="col-md-3 custom-border-right mb-1 mt-1 ">
       <div class="col">
         <div class="row">
           <div class="col-md-1"><i class="fas fa-home blue-color"></i></div>
-          <div class="col-md-10"></div>
+          <div class="col-md-10">{{ clientFournisseur.adresse?.adresse1 }}&nbsp;{{ clientFournisseur.adresse?.adresse2 }}</div>
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-map-marker-alt blue-color"></i></div>
-          <div class="col-md-10"></div>
+          <div class="col-md-10">{{ clientFournisseur.adresse?.codePostale }}&nbsp;{{ clientFournisseur.adresse?.ville }}</div>
         </div>
         <div class="row">
           <div class="col-md-1"><i class="fas fa-globe-europe blue-color"></i></div>
@@ -38,12 +38,12 @@
         </div>
       </div>
     </div>
-  
+
     <!--  boutons action-->
     <div class="col-md-3 mb-1 mt-1 ">
       <div class="row">
         <div class="col-md-4">
-          <button type="button" class="btn btn-link">
+          <button type="button" class="btn btn-link" (click)="modifierClientFournisseur()">
             <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
           </button>
         </div>
@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-  
+
     <!-- Modal -->
     <div class="modal fade"  data-backdrop="static" data-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel"
@@ -85,4 +85,3 @@
       </div>
     </div>
   </div>
-  

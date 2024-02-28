@@ -8,14 +8,13 @@
         (clickEvent)="nouvelArticle()"
       ></app-boutton-action>
     </div>
-    <div class="alert alert-danger" *ngIf="errorsMsg.length > 0">
-      {{ errorsMsg }}
-    </div>
+     <div class=" alert alert-danger" *ngIf="errorsMsg">{{errorsMsg}}</div>
   </div>
   <div class="col m-3">
     <app-detail-article
       *ngFor="let article of liste"
       [article]="article"
+      (suppressionResult)="handleSuppression($event)"
     >
     </app-detail-article>
   </div>

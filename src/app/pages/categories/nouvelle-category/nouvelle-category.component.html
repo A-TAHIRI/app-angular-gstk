@@ -17,6 +17,12 @@
               <input type="text" class="form-control" placeholder="Description" name="designation" [(ngModel)]="categorie.designation">
             </div>
           </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="file"  name="image"  class="file-upload" (change)="onFileSelected($event)">
+              <input type="hidden" name="image"  [(ngModel)]="categorie.image" [value]="pathFile">
+            </div>
+          </div>
         </form>
       </div>
     </div>

@@ -22,11 +22,23 @@ export class NouvelUtilisateurComponent implements OnInit {
     private router: Router,
     private utilisateurService: UtilisateurService,
     private fileUploadService : FileUploadService,
+    private  activatedRouter : ActivatedRoute
   ) {
 
   }
 
   ngOnInit(): void {
+    const idUser = this.activatedRouter.snapshot.params['idUtilisateur'];
+    if(idUser){
+      this.utilisateur.id= idUser;
+    const user: any =   this.utilisateurService.getUtilisateur(idUser);
+        this.utilisateurService.update(idUser , user).
+      subscribe((data)=>{
+        this.utilisateur=data;
+        this.adresse= this.utilisateur.adresse ? this.utilisateur.adresse :{};
+      })
+    }
+
   }
 
   /**
@@ -39,19 +51,16 @@ export class NouvelUtilisateurComponent implements OnInit {
   /**
    * Method pur ajouter utilisateur à la bdd
    */
-  save() {
-    this.utilisateur.adresse = this.adresse;
-
-    this.utilisateur.entreprise= this.utilisateurService.getConnectedUser().entreprise;
-    this.utilisateurService
-      .AjouterUtilisateur(this.utilisateur)
-      .subscribe((data) => {
-          console.log(data);
+  ajouter( ) {
+      this.utilisateur.adresse = this.adresse;
+      this.utilisateur.entreprise = this.utilisateurService.getConnectedUser().entreprise;
+      this.utilisateurService.add(this.utilisateur).subscribe((data) => {
           this.router.navigate(['utilisateurs']);
         }, (err) => {
           this.errorsMsg = err.error.errors;
         }
       );
+
   }
 
   /**

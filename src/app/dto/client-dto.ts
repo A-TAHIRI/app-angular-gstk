@@ -2,7 +2,7 @@ import { AdresseDto } from './adresse-dto';
 import { CommandeClientDto } from './commande-client-dto';
 
 export interface ClientDto {
- 
+
      id?: number,
      creationDate?: number,
      lastModifiedDate?: number,
@@ -10,7 +10,7 @@ export interface ClientDto {
      prenom?: string,
      adresse?: AdresseDto,
      photo?: string,
-     mail?: string,
+     email?: string,
      numTel?: string,
      idEntreprise?: number,
      commandeClients?: Array<CommandeClientDto>

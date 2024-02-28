@@ -17,9 +17,12 @@ export class CategorieService {
    *  service pour récupérer une categorie
    * @param id
    */
-  getCategorie(id: number): Observable<Object> {
-    const url =  this.baseUrl+`/${id}`;
-    return this.http.get(url);
+  getCategorie(id?: number): Observable<Object> {
+    if (id){
+      const url =  this.baseUrl+`/${id}`;
+      return this.http.get(url);
+    }
+   return of();
   }
 
   /**

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Utilisateur} from "../../models/utilisateur";
 import {Router} from "@angular/router";
 import {UtilisateurService} from "../../services/utilisateur/utilisateur.service";
@@ -12,6 +12,9 @@ export class DetailUtilisateurComponent  implements OnInit {
 
   @Input()
   utilisateur : Utilisateur ={};
+
+  @Output()
+  suppressionResult = new EventEmitter();
   constructor(
     private  router: Router,
   ) {
@@ -19,4 +22,12 @@ export class DetailUtilisateurComponent  implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * rout pour modifier l'utilisateur
+   * @param id
+   */
+  modifierUtilisateur(id: number | undefined) {
+    this.router.navigate(['nouvelutilisateur', id])
+
+  }
 }

@@ -38,4 +38,11 @@ export class ProfilComponent implements OnInit {
     this.router.navigate(['nouvelutilisateur' , id] )
   }
 
+  /**
+   * rout pour modifier user
+   * @param id
+   */
+  modifierUtilisateur(id: number | undefined) {
+    this.router.navigate(['nouvelutilisateur' , id])
+  }
 }

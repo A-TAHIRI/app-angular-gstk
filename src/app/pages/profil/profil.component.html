@@ -9,7 +9,7 @@
           <small class="form-text text-muted">{{utilisateur.adresse?.adresse1}}&nbsp;{{utilisateur.adresse?.ville}}&nbsp;{{utilisateur.adresse?.pays}}</small>
         </div>
         <div class="col mb-3 p-0">
-          <button type="button" class="btn btn-primary mr-3" ><i class="fas fa-pencil-alt"></i>&nbsp;Modifier le
+          <button type="button" class="btn btn-primary mr-3" (click)="modifierUtilisateur(utilisateur.id)" ><i class="fas fa-pencil-alt"></i>&nbsp;Modifier le
             profil</button>
           <button type="button" class="btn btn-warning" (click)="modifierMotDePasse()"><i class="fas fa-lock"></i>&nbsp;Changer le mot de passe</button>
           <button type="button" class="btn-secondary" (click)="deconexion()">Déconnéxion</button>

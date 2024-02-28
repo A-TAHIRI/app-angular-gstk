@@ -24,10 +24,18 @@ export class UtilisateurService {
    * @param utilisateur
    * @constructor
    */
-  AjouterUtilisateur(utilisateur: Utilisateur): Observable<Object> {
+  add(utilisateur: Utilisateur): Observable<Object> {
     const url = `${this.baseUrl}/register`;
     return this.http.post(url, utilisateur);
   }
+save(utilisateur : Utilisateur){
+    const url = this.baseUrl+`/api/v1/utilisateurs`;
+  return this.http.post(url, utilisateur);
+}
+update(id : number , utilisateur: Utilisateur){
+  const url = this.baseUrl+`/api/v1/utilisateurs/${id}`;
+  return this.http.put(url, utilisateur);
+}
 
   /**
    * methode de l'etentifiant
@@ -43,9 +51,12 @@ export class UtilisateurService {
    * Service qui retourn un utilisateur par son id
    * @param id
    */
-  getUtilisateur(id: number){
-    const url = this.baseUrl+`/api/v1/utilisateurs/${id}`;
-   return  this.http.get(url);
+  getUtilisateur(id?: number):Observable<UtilisateurDto>{
+    if (id){
+      const url = this.baseUrl+`/api/v1/utilisateurs/${id}`;
+      return  this.http.get(url);
+    }
+   return of();
   }
 
 
@@ -100,10 +111,7 @@ export class UtilisateurService {
       return {};
 
   }
-  changerMotDepasse(changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto ):Observable<ChangerMotDePasseUtilisateurDto> {
-    const url = this.baseUrl+`/api/v1/utilisateurs/update/password`
-    return   this.http.post(url, changerMotDePasseUtilisateurDto);
-  }
+
 
   /**
    * method de tester le login et la validité de tocken

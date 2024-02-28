@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {  ArticleDto } from 'src/app/dto/article-dto';
 import { Article } from 'src/app/models/article';
 
@@ -30,7 +30,7 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
    * Service pour ajouter un article
    * @param article
    */
-  ajouterArticle(article: Article): Observable<Article> {
+  add(article: Article): Observable<Article> {
     const url=this.baseUrl;
     return this.http.post(url, article);
   }
@@ -40,7 +40,7 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
    * @param id
    * @param article
    */
-  mettreAJourArticle(id: number, article: Article): Observable<ArticleDto> {
+  update(id: number, article: Article): Observable<ArticleDto> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.put(url, article);
   }
@@ -49,15 +49,18 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
    * Service pour supprimer un article
    * @param id
    */
-  supprimerArticle(id: number): Observable<ArticleDto> {
-    const url =  this.baseUrl+`/${id}`;
-    return this.http.delete(url);
+  delet(id ?: number){
+    if (id){
+      const url =  this.baseUrl+`/${id}`;
+      return this.http.delete(url);
+    }
+  return  of();
   }
 
   /**
    * Service pour récupérer toutes les articles
    */
-  getToutesArticles():  Observable<ArticleDto[]> {
+  getAll():  Observable<ArticleDto[]> {
     const url =  this.baseUrl;
     console.log(url);
 

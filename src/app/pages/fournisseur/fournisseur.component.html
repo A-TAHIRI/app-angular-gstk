@@ -10,11 +10,12 @@
       </div>
     </div>
     <div class="col m-3">
-    
-      <app-detail-clt-frs
-      
-    
-   
+
+      <app-detail-clt-frs *ngFor=" let fournisseur of liste"
+       [clientFournisseur]="fournisseur"
+          [origin]="'fournisseur'"
+
+
       ></app-detail-clt-frs>
     </div>
     <div class="row mb-3">
@@ -22,6 +23,5 @@
         <app-pagination></app-pagination>
       </div>
     </div>
-  
+
   </div>
-  

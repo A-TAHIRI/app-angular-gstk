@@ -3,9 +3,6 @@ import { Router } from '@angular/router';
 import {CategorieService} from "../../services/categorie/categorie.service";
 import {Categorie} from "../../models/categirie";
 import {CategorieDto} from "../../dto/categorie-dto";
-// @ts-ignore
-//import {Lobibox} from  'lobibox';
-//import 'lobibox';
 
 
 
@@ -46,14 +43,13 @@ export class CategoriesComponent implements OnInit {
    * récupére toutes les categories
    */
   getAll(){
-    this.categorieService.getToutesCategories().subscribe((data) =>{
-      console.log(data)
-      this.liste=data
-    },(error)=>{
+   this.categorieService.getToutesCategories().subscribe((data)=>{
+     this.liste=data;
+   }, error => {
+     this.errorsMsg=error.error.errors
+     }
 
-            this.errorsMsg=error.error.errors
-      }
-    )
+   )
   }
 
   /**
@@ -84,7 +80,7 @@ export class CategoriesComponent implements OnInit {
    * confirmer la suppristion d'une categorie
    */
   confirmerEtSupprimerCat(){
-    if (this.selectedCatIdToDelete !== -1){
+    if (this.selectedCatIdToDelete ! == -1){
       this.categorieService.supprimerCategorie(this.selectedCatIdToDelete).subscribe(res=>{
        this.getAll();
       },
