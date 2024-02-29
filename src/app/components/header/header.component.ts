@@ -11,6 +11,7 @@ import {UtilisateurDto} from "../../dto/utilisateur-dto";
 export class HeaderComponent implements OnInit {
 
   connectedUser: UtilisateurDto = {};
+  imgUrl : string | ArrayBuffer ='assets/image/user.png';
   constructor(
     private  utilisateurService: UtilisateurService
 
@@ -18,6 +19,11 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit(): void {
     this.connectedUser = this.utilisateurService.getConnectedUser()
+    if (this.connectedUser.photo !== null){
+      this.imgUrl= 'http://localhost:8082/file/image/'+this.connectedUser.photo;
+    }else{
+      this.imgUrl= 'assets/image/user.png';
+    }
   }
 
 }

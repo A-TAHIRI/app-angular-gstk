@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {CategorieService} from "../../services/categorie/categorie.service";
-import {Categorie} from "../../models/categirie";
 import {CategorieDto} from "../../dto/categorie-dto";
-
-
-
-
-
+import {Categorie} from "../../models/categirie";
 
 @Component({
   selector: 'app-categories',
@@ -17,8 +12,10 @@ import {CategorieDto} from "../../dto/categorie-dto";
 export class CategoriesComponent implements OnInit {
 
   liste !: CategorieDto[];
+  cat : Categorie ={};
   errorsMsg:Array<string>=[];
   selectedCatIdToDelete?  = -1;
+  imgUrl : string | ArrayBuffer ='assets/image/category.jpg';
 
   constructor(
     private router: Router,
@@ -30,6 +27,19 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll()
+  this.afficherImg();
+
+  }
+
+  afficherImg(){
+    let image = this.liste.map((elem)=>{
+      return elem.image;
+    })
+    if (image !== null){
+      this.imgUrl= 'http://localhost:8082/file/image/'+image;
+    }else{
+      this.imgUrl= 'assets/image/category.jpg';
+    }
   }
 
   /**
@@ -66,6 +76,7 @@ export class CategoriesComponent implements OnInit {
    * @param id
    */
   selectCatPourSupprimer(id? : number){
+
     this.selectedCatIdToDelete= id;
   }
 
@@ -80,13 +91,14 @@ export class CategoriesComponent implements OnInit {
    * confirmer la suppristion d'une categorie
    */
   confirmerEtSupprimerCat(){
-    if (this.selectedCatIdToDelete ! == -1){
+    if (this.selectedCatIdToDelete !== -1){
+      debugger
       this.categorieService.supprimerCategorie(this.selectedCatIdToDelete).subscribe(res=>{
        this.getAll();
       },
         error=>{
     //lobibox.notify("error",{msg:error.error.message,sound:true,icon:false})
-           this.errorsMsg= error.error.message;
+           this.errorsMsg= error.error.error;
         });
     }
 

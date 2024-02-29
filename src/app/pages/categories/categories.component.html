@@ -14,8 +14,8 @@
         <span  class="text-center"> {{errorsMsg}}</span>
       </div>
       <div class="row col-md-12 custom-border mb-3 p-3"  *ngFor=" let cat of liste" >
-        <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " *ngIf="cat.image">
-          <img [src]="'http://localhost:8082/file/image/'+cat.image" width="100px" height="100px" alt="article">
+        <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " >
+          <img [src]="imgUrl" width="100px" height="100px" alt="article">
         </div>
         <div class="col-md-3 custom-border-right">
           {{cat.code}}
@@ -27,6 +27,7 @@
           <div class="row">
             <div class="col-md-4">
               <button type="button" class="btn btn-link"  (click)="modifierCategoie(cat.id )">
+
                 <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
               </button>
             </div>

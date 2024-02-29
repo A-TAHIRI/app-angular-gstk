@@ -11,6 +11,8 @@ import {Client} from "../../models/client";
 export class ClientComponent implements OnInit {
   liste !: Client[];
    errorsMsg ='';
+  imgUrl : string | ArrayBuffer ='assets/image/user.png';
+  client :Client={};
 
   constructor(
     private router: Router,
@@ -20,6 +22,7 @@ export class ClientComponent implements OnInit {
 
   ngOnInit(): void {
   this.clients();
+
   }
 
   clients(){

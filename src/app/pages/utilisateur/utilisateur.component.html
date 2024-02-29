@@ -16,6 +16,7 @@
       <app-detail-utilisateur
         *ngFor=" let user of liste "
         [utilisateur]="user"
+        [imgUrl]="user.photo ?  'http://localhost:8082/file/image/'+this.user.photo : 'assets/image/user.png'"
       >
       </app-detail-utilisateur>
 

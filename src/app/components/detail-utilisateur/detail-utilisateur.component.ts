@@ -12,6 +12,8 @@ export class DetailUtilisateurComponent  implements OnInit {
 
   @Input()
   utilisateur : Utilisateur ={};
+  @Input()
+  imgUrl= '';
 
   @Output()
   suppressionResult = new EventEmitter();

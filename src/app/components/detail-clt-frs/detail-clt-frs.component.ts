@@ -14,8 +14,11 @@ export class DetailCltFrsComponent  implements OnInit{
   origin = '';
   @Input()
   clientFournisseur : any= {};
+  @Input()
+  imgUrl='';
 
   deletCltFrsById? =-1;
+
 
   @Output()
   suppritionResult = new EventEmitter();

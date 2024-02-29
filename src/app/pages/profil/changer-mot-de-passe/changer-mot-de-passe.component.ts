@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {UtilisateurService} from "../../../services/utilisateur/utilisateur.service";
 import {UtilisateurDto} from "../../../dto/utilisateur-dto";
 import {ChangerMotDePasseUtilisateurDto} from "../../../dto/changer-mot-de-passe-utilisateur-dto";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-changer-mot-de-passe',
@@ -14,6 +15,7 @@ export class ChangerMotDePasseComponent implements OnInit {
   changerMotDePasseUtilisateurDto: ChangerMotDePasseUtilisateurDto = {};
   ancienMotDePasse = '';
   errorMsg ='';
+  imgUrl : string | ArrayBuffer ='assets/image/user.png';
 
   constructor(
     private router: Router,
@@ -25,9 +27,15 @@ export class ChangerMotDePasseComponent implements OnInit {
     if (localStorage.getItem('origin') && localStorage.getItem('origin')==='inscription') {
       this.ancienMotDePasse = "som3R@nd0mP@$$word";
       localStorage.removeItem('origin');
-
     }
     this.utilisateur = this.utilisateurService.getConnectedUser();
+
+
+    if (this.utilisateur.photo !== null){
+      this.imgUrl= 'http://localhost:8082/file/image/'+this.utilisateur.photo;
+    }else{
+      this.imgUrl= 'assets/image/user.png';
+    }
   }
 
   cancel(): void {
@@ -37,11 +45,11 @@ export class ChangerMotDePasseComponent implements OnInit {
   chagerMotDePasseUtilisateur() {
     this.changerMotDePasseUtilisateurDto.id= this.utilisateurService.getConnectedUser().id;
     this.utilisateurService.changerMotDePasse(this.changerMotDePasseUtilisateurDto).subscribe((data) => {
-      this.router.navigate(['profil'])
+      this.router.navigate([''])
     },error => {
-
       this.errorMsg=error.error.message;
     })
+
   }
 
 }

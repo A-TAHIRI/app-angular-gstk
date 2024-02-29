@@ -11,6 +11,7 @@ import {FournisseurService} from "../../services/fournisseur/fournisseur.service
 export class FournisseurComponent implements OnInit {
    liste:Array<Fournisseur>= [];
    errorsMsg= '';
+  imgUrl : string | ArrayBuffer ='assets/image/user.png';
 
   constructor(
     private router: Router,
@@ -19,8 +20,10 @@ export class FournisseurComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  this.fournisseurs()
+  this.fournisseurs();
+
   }
+
 
   fournisseurs(){
     this.fournisseurService.getAll().subscribe(data=>{

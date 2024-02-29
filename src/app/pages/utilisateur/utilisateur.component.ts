@@ -11,6 +11,7 @@ import {UtilisateurService} from "../../services/utilisateur/utilisateur.service
 export class UtilisateurComponent implements OnInit {
   liste ! : Utilisateur[];
   errorMsg ='';
+  imgUrl : string | ArrayBuffer ='assets/image/user.png';
 
   constructor(
     private router: Router,

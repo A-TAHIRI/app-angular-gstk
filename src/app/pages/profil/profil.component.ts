@@ -10,6 +10,7 @@ import {UtilisateurDto} from "../../dto/utilisateur-dto";
 })
 export class ProfilComponent implements OnInit {
   utilisateur: UtilisateurDto={};
+  imgUrl : string | ArrayBuffer ='assets/image/user.png';
 
   constructor(
     private router: Router,
@@ -18,6 +19,11 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.utilisateur = this.utilsateurService.getConnectedUser();
+    if (this.utilisateur.photo !== null){
+      this.imgUrl= 'http://localhost:8082/file/image/'+this.utilisateur.photo;
+    }else{
+      this.imgUrl= 'assets/image/user.png';
+    }
   }
 
   /**
