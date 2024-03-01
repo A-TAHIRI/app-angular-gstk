@@ -12,7 +12,7 @@ import {FileUploadService} from "../../../services/upload/file-upload.service";
   styleUrls: ['./nouvelle-category.component.css']
 })
 export class NouvelleCategoryComponent implements OnInit {
- categorie : CategorieDto= {};
+ categorie : Categorie= {};
   errorsMsg: Array<string>= [];
   pathFile ='';
 

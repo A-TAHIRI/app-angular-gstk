@@ -15,7 +15,7 @@
       </div>
       <div class="row col-md-12 custom-border mb-3 p-3"  *ngFor=" let cat of liste" >
         <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 " >
-          <img [src]="imgUrl" width="100px" height="100px" alt="article">
+          <img [src]=" cat.image ? imgUrl+cat.image : basImgUrl " width="100px" height="100px" alt="article">
         </div>
         <div class="col-md-3 custom-border-right">
           {{cat.code}}

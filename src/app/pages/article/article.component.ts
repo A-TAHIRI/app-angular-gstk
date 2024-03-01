@@ -5,6 +5,7 @@ import { ArticleDto } from 'src/app/dto/article-dto';
 
 
 import { ArticleService } from 'src/app/services/article/article.service';
+import {Article} from "../../models/article";
 
 @Component({
   selector: 'app-article',
@@ -13,7 +14,7 @@ import { ArticleService } from 'src/app/services/article/article.service';
 })
 export class ArticleComponent implements OnInit {
 
- liste !:  ArticleDto[];
+ liste !:  Article[];
   errorsMsg='';
   constructor(
     private router: Router,

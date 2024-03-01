@@ -21,7 +21,7 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
    *  Service pour récupérer un article
    * @param id
    */
-  getArticle(id: number): Observable<ArticleDto> {
+  getArticle(id: number): Observable<any> {
     const url =  this.baseUrl+`/${id}`;
     return this.http.get(url);
   }
@@ -57,13 +57,16 @@ readonly baseUrl = 'http://localhost:8082/api/v1/articles';
   /**
    * Service pour récupérer toutes les articles
    */
-  getAll():  Observable<ArticleDto[]> {
+  getAll():  Observable<any[]> {
     const url =  this.baseUrl;
     console.log(url);
 
-    return this.http.get<ArticleDto[]>(url);
+    return this.http.get<any[]>(url);
   }
 
 
-
+  findArticleByCode(codeArticle: string) {
+    const  url = this.baseUrl+`/filter/${codeArticle}`;
+     return  this.http.get(url);
+  }
 }

@@ -50,7 +50,7 @@
           <div class="row mb-3">
             <div class="col">
               <input type="file" class="file-upload" (change)="onFileSelected($event)"  >
-              <input type="hidden" name="image"  [(ngModel)]="article.image" [value]="pathFile">
+              <input type="hidden" name="image"  [(ngModel)]="article.image" [value]="pathFile"  >
             </div>
             <div class="col">
               <img class="custom-border" [src]="playImage" style="max-width: 100px"  *ngIf="playImage">

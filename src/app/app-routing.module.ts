@@ -19,6 +19,7 @@ import { NouvelUtilisateurComponent } from './pages/utilisateur/nouvel-utilisate
 import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/changer-mot-de-passe.component';
 import { ApplicationGuardService } from './services/guard/application-guard.service';
 import { ArticleComponent } from './pages/article/article.component';
+import {NouvelleCmdCltFrsComponent} from "./components/nouvelle-cmd-clt-frs/nouvelle-cmd-clt-frs.component";
 
 
 const routes: Routes = [
@@ -54,7 +55,7 @@ const routes: Routes = [
     data: {
       origin: 'client'
     }},
-    {path: 'nouvellecommandeclt', component: NouveauCltFrsComponent,
+    {path: 'nouvellecommandeclt', component: NouvelleCmdCltFrsComponent,
     canActivate: [ApplicationGuardService],
     data: {
       origin: 'client'
@@ -75,7 +76,7 @@ const routes: Routes = [
       data: {
         origin: 'fournisseur'
       }},
-    {path: 'nouvellecommandefrs', component: NouveauCltFrsComponent,
+    {path: 'nouvellecommandefrs', component: NouvelleCmdCltFrsComponent,
     canActivate: [ApplicationGuardService],
       data: {
       origin: 'fournisseur'

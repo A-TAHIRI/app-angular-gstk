@@ -15,7 +15,8 @@ export class CategoriesComponent implements OnInit {
   cat : Categorie ={};
   errorsMsg:Array<string>=[];
   selectedCatIdToDelete?  = -1;
-  imgUrl : string | ArrayBuffer ='assets/image/category.jpg';
+  basImgUrl : string  ='assets/image/category.jpg';
+  imgUrl:string ='http://localhost:8082/file/image/'
 
   constructor(
     private router: Router,
@@ -27,20 +28,10 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll()
-  this.afficherImg();
+
 
   }
 
-  afficherImg(){
-    let image = this.liste.map((elem)=>{
-      return elem.image;
-    })
-    if (image !== null){
-      this.imgUrl= 'http://localhost:8082/file/image/'+image;
-    }else{
-      this.imgUrl= 'assets/image/category.jpg';
-    }
-  }
 
   /**
    * ajouter une categorie à bdd
