@@ -27,7 +27,7 @@ export class DetailCmdCltFrsComponent  implements OnInit{
     if (this.origin === 'client') {
       this.cltFrs = this.commande?.client;
     } else if (this.origin === 'fournisseur') {
-      this.cltFrs = this.commande.fournisseur;
+      this.cltFrs = this.commande?.fournisseur;
     }
   }
 

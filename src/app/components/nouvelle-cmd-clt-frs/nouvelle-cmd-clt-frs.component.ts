@@ -100,7 +100,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    * Method pour ajouter une commade client/fournisseur a la bdd
    */
   enregistrerCommande( ) {
-  if (this.origin=== 'client'){
+  if (this.origin === 'client'){
     const commandeClient: CommandeClient ={
       client: this.selectedClientFournisseur,
       reference: this.codeCommande,
@@ -115,7 +115,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       this.errorMsg= error.error.errors;
     });
 
-  }else if (this.origin==='fournisseur'){
+  }else if (this.origin ==='fournisseur'){
     const commadeFournisseur: CommandeFournisseur ={
       fournisseur: this.selectedClientFournisseur,
       reference:this.codeCommande,
@@ -150,7 +150,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
    */
   ajouterLigneCommande() {
     if (this.origin === 'client') {
-      debugger
       const ligneComdAlreadyExixts = this.lignesCommande.includes(lig =>  lig.article?.codeArticle === this.searchedArticle.codeArticle );
       if (ligneComdAlreadyExixts) {
         this.lignesCommande.forEach(lig => {

@@ -15,18 +15,20 @@
       <div class="accordion" id="accordionExample" *ngFor="let cmd of listCommande" >
         <div class="card">
           <div class="card-body" id="headingOne">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse"
+            <button class="btn btn-block text-left" type="button" data-bs-toggle="collapse"
                     [attr.data-target]="'#collapseOne'+cmd.id"
                     aria-expanded="true"
                     aria-controls="collapseOne">
-              <app-detail-cmd-clt-frs *ngFor="let cmd of listCommande"
+
+              <app-detail-cmd-clt-frs
                [commande]="cmd"
                [origin]="origin"
 
               ></app-detail-cmd-clt-frs>
             </button>
           </div>
-          <div id="collapseOne{{cmd.id}}" class="collapse" aria-labelledby="headingOne" [attr.data-parent]="'#accordionExample'+cmd.id"
+<!--
+          <div id="collapseOne{{cmd.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"
                style="max-height: 300px;
           overflow-y: scroll">
             <div class="card-body">
@@ -40,12 +42,14 @@
               <div class="row">
                 <div class="col-md-6 text-left">
                   <h5>{{mapLignesCommande.get(cmd.id).length}} lignes de commande</h5>
+
                 </div>
                 <div class="col-md-6 text-right">
                   <h5>Total commande: {{ calculerTotalCommande(cmd.id) }}</h5>
                 </div>
               </div>
             </div>
+          -->
         </div>
       </div>
     </div>

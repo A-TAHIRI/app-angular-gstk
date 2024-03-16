@@ -20,11 +20,13 @@ import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/
 import { ApplicationGuardService } from './services/guard/application-guard.service';
 import { ArticleComponent } from './pages/article/article.component';
 import {NouvelleCmdCltFrsComponent} from "./components/nouvelle-cmd-clt-frs/nouvelle-cmd-clt-frs.component";
+import {HomeComponent} from "./pages/general/home/home.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'inscrire', component: InscriptionComponent},
+  {path: 'home', component: HomeComponent},
   {path: '', component: DashboardComponent,
     canActivate: [ApplicationGuardService],
   children:[

@@ -43,6 +43,7 @@ import {NouvelleCategoryComponent} from './pages/categories/nouvelle-category/no
 import {NouvelUtilisateurComponent} from './pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur.component';
 import {ChangerMotDePasseComponent} from './pages/profil/changer-mot-de-passe/changer-mot-de-passe.component';
 import {HttpInterceptorService} from "./services/interceptor/http-interceptor.service";
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import {HttpInterceptorService} from "./services/interceptor/http-interceptor.se
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CarouselModule,
 
   ],
   providers: [

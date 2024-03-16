@@ -90,4 +90,29 @@ export class CmdCltFrsComponent  implements OnInit {
   calculerTotalCommande(id?: number): number {
     return this.mapPrixTotalCommande.get(id);
   }
+
+
+
+  toggleCollapse(menuId: string): void {
+    const collapseId = 'collapse' + menuId;
+    const collapseElement = document.getElementById(collapseId);
+
+    if (collapseElement) {
+      if (collapseElement.classList.contains('show')) {
+        collapseElement.classList.remove('show');
+      } else {
+        collapseElement.classList.add('show');
+      }
+    }
+  }
+
+
+  isCollapsed(menuId: string) :void{
+    const collapseId = 'collapse' + menuId;
+    const collapseElement = document.getElementById(collapseId);
+
+    // Vérifie si l'élément est actuellement en mode collapsé (c'est-à-dire s'il a la classe 'show')
+    collapseElement && collapseElement.classList.contains('show');
+
+  }
 }

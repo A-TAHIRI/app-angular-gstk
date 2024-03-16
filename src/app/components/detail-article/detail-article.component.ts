@@ -11,7 +11,7 @@ import { ArticleService } from 'src/app/services/article/article.service';
 export class DetailArticleComponent  implements OnInit {
 
   articleDeletById?= -1;
-  imgUrl : string | ArrayBuffer ='assets/image/produit.png';
+  imgUrl : string | ArrayBuffer ='assets/img/produit.png';
 
 @Output()
 suppressionResult = new EventEmitter();
@@ -29,7 +29,7 @@ suppressionResult = new EventEmitter();
     if (this.article.image !== null){
       this.imgUrl= 'http://localhost:8082/file/image/'+this.article.image;
     }else{
-      this.imgUrl= 'assets/image/produit.png';
+      this.imgUrl= 'assets/img/produit.png';
     }
 
   }
